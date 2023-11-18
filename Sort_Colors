@@ -1,0 +1,53 @@
+https://leetcode.com/problems/sort-colors/
+
+class Solution {
+
+    private static void swap(int[] nums, int i, int j){
+         int temp = nums[i];
+         nums[i] = nums[j];
+         nums[j] = temp;
+    }
+    
+    public void sortColors(int[] nums) {
+     int n = nums.length;
+    
+     int low = 0;
+     int mid = 0;
+     int high = n-1;
+
+     while(mid<=high){
+         if(nums[mid]==0){
+             swap(nums,low,mid);
+             low++;
+             mid++;
+         }
+         else if(nums[mid]==1){
+             mid++;
+         }
+         else{
+             swap(nums,mid,high);
+             high--;
+         }
+     }
+    }
+}
+////SC:O(1)
+//The Dutch National Flag algorithm(Edsger Dijkstra) is a form of two-pointer approach, 
+
+The logic behind this algorithm is to partition the array into three sections: 0s, 1s, and 2s. 
+The algorithm maintains three pointers: low, mid, and high. The low pointer represents the boundary for 0s, 
+the mid pointer represents the boundary for 1s, and the high pointer represents the boundary for 2s.
+
+he idea is to iterate through the array using the mid pointer. While iterating, 
+you compare the element at the mid position with 0, 1, and 2, and perform the following actions:
+
+1. If nums[mid] is 0, swap it with the element at the low position, and increment both low and mid pointers. 
+This step ensures that all 0s are moved to the beginning of the array.
+
+2. If nums[mid] is 1, simply increment the mid pointer. This step is necessary to maintain the section of 1s.
+
+3. If nums[mid] is 2, swap it with the element at the high position and decrement the high pointer. 
+This step ensures that all 2s are moved to the end of the array.
+
+The process continues until the mid pointer crosses the high pointer. At this point, the array is partitioned into 
+three sections, and all 0s are to the left, 1s in the middle, and 2s to the right.
