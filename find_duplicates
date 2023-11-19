@@ -1,0 +1,56 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+       int n = nums.length-1;
+       int result = 0;
+
+          for(int i=0;i<=n;i++){
+            int index = Math.abs(nums[i])-1;
+            
+            if(nums[index]>0){
+                nums[index] = -nums[index];
+            }
+            else {
+                result = Math.abs(nums[i]);
+            }
+        }
+
+       return result;
+    }
+}
+
+//int index = Math.abs(nums[i])-1;  to find the correct index, -1 is to not go out of bond
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+
+       int tortoise = nums[0];
+       int hare = nums[0];
+
+       while(true){
+
+           tortoise = nums[tortoise];
+           hare = nums[nums[hare]];
+           if(tortoise == hare){
+               break;
+           }
+
+       }
+
+        // Phase 2: Finding Entry Point of the Cycle
+        hare = nums[0];
+
+        while (tortoise != hare) {
+
+            tortoise = nums[tortoise];
+            hare = nums[hare];
+
+        }
+        
+       return tortoise;
+    }
+}
+
+        
+//The algorithm used in the provided code is called "Floyd's Tortoise and Hare /////algorithm" or "Cycle Detection algorithm, to find the duplicates
+
+//TC:O(n)
