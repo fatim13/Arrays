@@ -1,0 +1,50 @@
+class Solve {
+    int[] findTwoElement(int arr[], int n) {
+        
+     int result[] = new int[2];
+        
+        for(int i=0;i<n;i++){
+            int index = Math.abs(arr[i])-1;
+            
+            if(arr[index]>0){
+                arr[index] = -arr[index];
+            }
+            else {
+                result[0] = Math.abs(arr[i]);
+            }
+        }
+        
+          for (int i = 0; i < n; i++) {
+            if (arr[i] > 0) {
+                result[1] = i + 1;
+                break;
+            }
+        }
+        return result;
+       
+    }
+}
+
+
+//Cyclic Sort algorithm
+//TC:O(n)
+//SC:O(n)
+
+
+The expression int index = Math.abs(arr[i]) - 1; is used to calculate an index value based on the current element in 
+the array arr at position i. Let's break down the components of this expression:
+
+arr[i]: This part accesses the element at index i in the array arr.
+
+Math.abs(arr[i]): The Math.abs function returns the absolute value of a number. In this case, it ensures that the value
+used for indexing is non-negative. This is important because the result is used as an index, and array indices cannot
+be negative.
+
+Math.abs(arr[i]) - 1: After obtaining the absolute value, the expression subtracts 1. This is done to convert the 
+value to a valid index. In many programming languages, arrays are zero-indexed, meaning the first element has an index
+of 0, the second element has an index of 1, and so on. Subtracting 1 from the absolute value aligns the index with
+this zero-based indexing convention.
+
+So, the overall purpose of int index = Math.abs(arr[i]) - 1; is to calculate an index based on the absolute
+value of the current element in the array arr. This calculated index is then used in the subsequent logic,
+such as checking and updating the array elements.
