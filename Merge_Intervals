@@ -1,0 +1,28 @@
+class Solution {
+
+    public int[][] merge(int[][] intervals) {
+
+      //sort the arrays in increassing order
+      Arrays.sort(intervals, (a, b) -> Integer.compare(a[0],b[0])); 
+
+      //create alinked list of array
+      LinkedList<int[]> merged = new LinkedList<>();
+      
+      for(int[] interval: intervals){
+
+          if(merged.isEmpty() || merged.getLast()[1]<interval[0]){
+              merged.add(interval);
+          }else{
+              merged.getLast()[1] = Math.max(merged.getLast()[1],interval[1]);
+          }
+      }
+
+     //convert element of linkedList to 2d array.
+      return merged.toArray(new int[merged.size()][]);
+      
+    }
+}
+
+//new int[merged.size()][] number of the intervals in the linkedList name merged
+SC:worst case, all intervals are distinct and not merged, resulting in O(n) space for the linked list.
+TC:O(nlogn)..because of sorting
